@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Knockout";
+}
+
+<h2>Knockout</h2>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/knockout-2.1.0.js")
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <button type="submit" class="btn btn-default" data-bind="click: pickSandwichChoice">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </button>
+    <span data-bind="text: sandwichChoice"></span>
+  </div>
+</div>
+
+
+<h3>Available Choices</h3>
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+        <tr><th>Name</th><th>Flavour Rating</th><th>Ingredients</th><th>Priority</th></tr>
+    </thead>
+    <tbody data-bind="foreach: sandwiches">
+        <tr>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: FlavourRating"></td>
+            <td data-bind="text: Ingredients"></td>
+            <td data-bind="text: Priority"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Preview</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+        <div class="col-md-4"><h5>Name:</h5><span data-bind="text: newChoiceName"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add choice</h3>
+  </div>
+  <div class="panel-body">
+    <label class="sr-only" for="inputName">Name</label>
+    <input type="text" class="form-control" id="inputName" placeholder="Sandwich Name"
+    data-bind="value: newChoiceName, valueUpdate: 'afterkeydown'">
+  </div>
+  <div class="panel-body">
+    <label class="sr-only" for="inputIngredients">Ingredients</label>
+    <input type="text" class="form-control" id="inputIngredients" placeholder="Sandwich ingredients">
+  </div>
+  <button class="btn btn-default">Add</button>
+</div>
+
+<script>
+    var ViewModel = {
+        sandwichChoice: ko.observable("Click to pick..."),
+        sandwiches: ko.observableArray(),
+
+        newChoiceName: ko.observable(),
+
+        pickSandwichChoice: function () {
+            this.sandwichChoice(this.sandwiches()[0].Name);
+        }
+    }
+
+    ko.applyBindings(ViewModel);
+
+    $(document).ready(function () {
+        $("h2").text("Knockout Loaded");
+
+        $.getJSON("/api/Sandwich").done(function (json) {
+            $("h2").text("Sandwiches loaded");
+            ViewModel.sandwiches(json);
+        });
+    });
+</script>
