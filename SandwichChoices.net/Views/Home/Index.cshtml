@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Priority)
         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.DateDiscovered)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.DateDiscovered)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

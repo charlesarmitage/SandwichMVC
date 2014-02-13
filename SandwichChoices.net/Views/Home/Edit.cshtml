@@ -46,6 +46,14 @@
             @Html.ValidationMessageFor(model => model.Priority)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateDiscovered)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateDiscovered)
+            @Html.ValidationMessageFor(model => model.DateDiscovered)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>
