@@ -11,9 +11,9 @@ namespace SandwichChoices.net
     {
         protected override void Seed(Models.SandwichDbContext context)
         {
-            context.Sandwiches.Add(new Sandwich { Name = "Cheese", Ingredients = "Cheese", FlavourRating = 9, Priority = 7});
-            context.Sandwiches.Add(new Sandwich { Name = "Cheese & Pickle", Ingredients = "Cheese, Pickle", FlavourRating = 10, Priority = 10});
-            context.Sandwiches.Add(new Sandwich { Name = "Cheese & Tomato", Ingredients = "Cheese, Tomato", FlavourRating = 8, Priority = 6});
+            context.Sandwiches.Add(new Sandwich { Name = "Cheese", Ingredients = "Cheese", FlavourRating = 9, Priority = 7, InventedBy = "Caesar Augustus"});
+            context.Sandwiches.Add(new Sandwich { Name = "Cheese & Pickle", Ingredients = "Cheese, Pickle", FlavourRating = 10, Priority = 10, InventedBy = "Benjamin Franklin"});
+            context.Sandwiches.Add(new Sandwich { Name = "Cheese & Tomato", Ingredients = "Cheese, Tomato", FlavourRating = 8, Priority = 6, InventedBy = "Simon Cowell"});
             base.Seed(context);
         }
     }
