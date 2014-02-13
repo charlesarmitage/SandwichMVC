@@ -11,6 +11,7 @@
   <div class="panel-body">
     <p>
     You will need to download the following package for MVC4 development:
+    <a href="http://www.microsoft.com/en-gb/download/details.aspx?id=30683">http://www.microsoft.com/en-gb/download/details.aspx?id=30683</a>
     http://www.microsoft.com/en-gb/download/details.aspx?id=30683
     </p>
     <p>
@@ -89,5 +90,35 @@
     <h2 class="panel-title">Excercises</h2>
   </div>
   <div class="panel-body">
+        <p>The excercises require the Knockout/Index.cshtml file to be edited. This can be done while the application is running (in a debugger or otherwise).
+            Just refresh the page.</p>
+        <p>Detailed Knockout docs and tutorials are available at: <a href="http://knockoutjs.com/">http://knockoutjs.com/</a></p>
+    <ol class="list-group">
+        <li class="list-group-item">"InventedBy" is missing from the summary table populated when the page loads. Add it.</li>
+        <li class="list-group-item">The pick sandwich choice button (at the top of the page) is bound to the view-model on the click event.
+        See <b>data-bind="click: pickFirstSandwichChoice"</b>. This calls the pickFirstSandwichChoice function in the View-Model. The pickSandwichChoice
+        function in the View-Model just returns the first choice in the model's array. 
+        <p>Add another function to pick a random selection or other whimsical way of choosing a sandwich. Bind this new function to the click event.</p></li>
+        <li class="list-group-item">Try entering data into the Add Choice panel. Note how the Preview Name is automatically updated in the page.</li>
+        <li class="list-group-item">
+            The Add Choice panel "Ingredients" input field is not bound to any part of the ViewModel. Add an observable to the ViewModel and bind it to the "Ingredients" input field. The Preview Ingredients field is not bound to the model. Bind it to get the changes in the Add Choice panel to be reflected
+            in the Preview panel.
+            <p>What is the difference if the "valueUpdate: 'afterkeydown'" option is not added to the data binding.</p>
+        </li>
+        <li class="list-group-item">
+            The Add Choice panel does not have all of the different fields for adding a new sandwich choice to the database. Add the new fields.
+        </li>        
+        <li class="list-group-item">
+            The Add button is not bound to any function that will add the sandwich choice to the database. Add a function to add the choice to the database.
+            The observableArray will then need to be updated to reflect the new model data.
+            <p>Perhaps add a fake delay and a progress bar to simulate performing a long calculation on the data.</p>
+        </li>
+        <li class="list-group-item">
+            Add "Details", "Edit" and "Delete" functionality. Perhaps using buttons added to the table?
+        </li>
+        <li class="list-group-item">
+            Use Bootstrap to make the interface more appealing. Add more glyphs and better panels etc. Change what parts of the page are visible. Knockout allows you to bind part of the ViewModel to the "visible" HTML attribute.
+        </li>
+    </ol>
   </div>
 </div>
