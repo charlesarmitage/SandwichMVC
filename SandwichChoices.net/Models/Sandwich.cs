@@ -18,5 +18,6 @@ namespace SandwichChoices.net.Models
         public string Ingredients { get; set; }
         public int FlavourRating { get; set; }
         public int Priority { get; set; }
+        public DateTime? DateDiscovered { get; set; }
     }
 }
