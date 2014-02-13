@@ -4,13 +4,90 @@
 
 <h2>Tutorial</h2>
 
-<h3>Building<h3/>
-<p>
-You will need to download the following package for MVC4 development:
-http://www.microsoft.com/en-gb/download/details.aspx?id=30683
-</p>
-<p>
-You may need to restore the missing nuget packages using the nuget package manager console.
-</p>
-<p>Build and hit F5.</p>
-<p>Navigate to localhost:(some port)/Knockout.</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Building</h2>
+  </div>
+  <div class="panel-body">
+    <p>
+    You will need to download the following package for MVC4 development:
+    http://www.microsoft.com/en-gb/download/details.aspx?id=30683
+    </p>
+    <p>
+    You may need to upgrade your nu-get package manager. Then you may need to restore the missing nuget packages using the nuget package manager console.
+    </p>
+    <p>Build and hit F5.</p>
+    <p>Navigate to localhost:(some port)/Knockout.</p>
+  </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Model View View-Model (MVVM)</h2>
+    </div>
+    <div class="panel-body">
+    <div class="row">
+    <div class="col-md-6">
+        <img src="/Content/images/mvvm.png" alt="Model View View-Model" class="img-rounded"/>
+    </div>
+    <div class="col-md-6">
+        <p>Model View View-Model seperates the view from the model using a view-model. The view-model provides an observable data source that the view can be
+        bound to. Observable means that if the data in the view-model changes then the view will be informed of the changes and can update. Likewise if the 
+        view allows for the user to enter new data then that is reflected in the view-model via the data bindings.</p>
+        <p>
+        The view-model can interact with the underlying model to get or persist data from the view model.
+        </p>
+        <p>The view-model becomes a UI implementation independent version of the view.</p>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Knockout data binding for MVVM</h2>
+  </div>
+  <div class="panel-body">
+    <p>
+    The Model (the data from the database) is returned from http://localhost:50574/api/sandwich/ (Try the api and see what is returned).
+    The data is retrieved when the document/page is loaded.
+    See function:
+    <div class="well well-sm">
+        $(document).ready(function () {</br>
+        ...</br>
+        }</br>
+    </div>
+    <p>
+    The JSON data is then put into a Knockout observableArray. The array is declared in: 
+    </p>
+    <div class="well well-sm">
+        var ViewModel = {</br>
+        ...</br>
+        sandwiches: ko.observableArray(),</br>
+        }</br>
+    </div>
+    <p>and added to Knockout using:</p>
+    <div class="well well-sm">
+        ko.applyBindings(ViewModel);
+    </div>
+    <p>Finally, the View is bound to the data with the data-binding statements in the HTML. The observableArray is iterated over in the table
+    using the following statements:</p>
+    <div class="well well-sm">
+    &lt;tbody data-bind="foreach: sandwiches"&gt;</br>
+        &lt;tr&gt;</br>
+            &lt;td data-bind="text: Name">&lt;/td&gt;</br>
+            &lt;td data-bind="text: FlavourRating"&gt;&lt;/td&gt;</br>
+            &lt;td data-bind="text: Ingredients"&gt;&lt;/td&gt;</br>
+            &lt;td data-bind="text: Priority"&gt;&lt;/td&gt;</br>
+        &lt;/tr&gt;</br>
+    &lt;/tbody&gt;</br>
+    </div>
+    <p>Note how the foreach binding is bound to the "sandwiches" label (the observableArray) and the table cell elements are bound to 
+    elements of the model (a sandwich).</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Excercises</h2>
+  </div>
+  <div class="panel-body">
+  </div>
+</div>

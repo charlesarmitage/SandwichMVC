@@ -54,7 +54,7 @@
   </div>
   <div class="panel-body">
     <label class="sr-only" for="inputIngredients">Ingredients</label>
-    <input type="text" class="form-control" id="inputIngredients" placeholder="Sandwich ingredients">
+    <input type="text" class="form-control" id="inputIngredients" placeholder="Sandwich Ingredients">
   </div>
   <button class="btn btn-default">Add</button>
 </div>
@@ -74,7 +74,7 @@
     ko.applyBindings(ViewModel);
 
     $(document).ready(function () {
-        $("h2").text("Knockout Loaded");
+        $("h2").text("Document Loaded");
 
         $.getJSON("/api/Sandwich").done(function (json) {
             $("h2").text("Sandwiches loaded");
