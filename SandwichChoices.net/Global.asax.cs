@@ -22,6 +22,8 @@ namespace SandwichChoices.net
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            System.Data.Entity.Database.SetInitializer(new SandwichInitializor());
         }
     }
 }
