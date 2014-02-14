@@ -111,9 +111,8 @@
             $.ajax({
                 url: "/api/Sandwich/",
                 type: "POST",
-                data: newSandwich,
+                data: JSON.stringify(newSandwich),
                 datatype: "json",
-                processData: false,
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     alert(result);
