@@ -20,7 +20,7 @@
 <h3>Available Choices</h3>
 <table class="table table-bordered table-hover table-condensed">
     <thead>
-        <tr><th>Name</th><th>Flavour Rating</th><th>Ingredients</th><th>Priority</th></tr>
+        <tr><th>Name</th><th>Flavour Rating</th><th>Ingredients</th><th>Priority</th><th>Invented By</th></tr>
     </thead>
     <tbody data-bind="foreach: sandwiches">
         <tr>
@@ -28,6 +28,7 @@
             <td data-bind="text: FlavourRating"></td>
             <td data-bind="text: Ingredients"></td>
             <td data-bind="text: Priority"></td>
+            <td data-bind="text: InventedBy"></td>
         </tr>
     </tbody>
 </table>
@@ -39,6 +40,10 @@
   <div class="panel-body">
     <div class="row">
         <div class="col-md-4"><h5>Name:</h5><span data-bind="text: newChoiceName"></span></div>
+        <div class="col-md-4"><h5>Ingredients:</h5><span data-bind="text: newChoiceIngredients"></span></div>
+        <div class="col-md-4"><h5>InventedBy:</h5><span data-bind="text: newChoiceInventedBy"></span></div>
+        <div class="col-md-4"><h5>Priority:</h5><span data-bind="text: newChoicePriority"></span></div>
+        <div class="col-md-4"><h5>Flavour Rating:</h5><span data-bind="text: newChoiceFlavourRating"></span></div>
     </div>
   </div>
 </div>
@@ -54,9 +59,27 @@
   </div>
   <div class="panel-body">
     <label class="sr-only" for="inputIngredients">Ingredients</label>
-    <input type="text" class="form-control" id="inputIngredients" placeholder="Sandwich Ingredients">
+    <input type="text" class="form-control" id="inputIngredients" placeholder="Sandwich Ingredients"
+    data-bind="value: newChoiceIngredients, valueUpdate: 'afterkeydown'">
   </div>
-  <button class="btn btn-default">Add</button>
+    <div class="panel-body">
+    <label class="sr-only" for="inputInventedBy">Invented By</label>
+    <input type="text" class="form-control" id="inputInventedBy" placeholder="Invented By"
+    data-bind="value: newChoiceInventedBy, valueUpdate: 'afterkeydown'">
+  </div>
+    <div class="panel-body">
+    <label class="sr-only" for="inputPriority">Prioirty</label>
+    <input type="text" class="form-control" id="inputPriority" placeholder="Priority"
+    data-bind="value: newChoicePriority, valueUpdate: 'afterkeydown'">
+  </div>
+  <div class="panel-body">
+    <label class="sr-only" for="inputFlavourRating">Flavour Rating</label>
+    <input type="text" class="form-control" id="inputFlavourRating" placeholder="Flavour Rating"
+    data-bind="value: newChoiceFlavourRating, valueUpdate: 'afterkeydown'">
+  </div>
+  <div class="panel-body">
+    <button class="btn btn-default" data-bind="click: addSandwich">Add</button>
+  </div>
 </div>
 
 <script>
@@ -64,10 +87,38 @@
         sandwichChoice: ko.observable("Click to pick..."),
         sandwiches: ko.observableArray(),
 
-        newChoiceName: ko.observable(),
+        newChoiceName: ko.observable("Ham"),
+        newChoiceIngredients: ko.observable("Ham"),
+        newChoiceInventedBy: ko.observable("Charles"),
+        newChoicePriority: ko.observable(2),
+        newChoiceFlavourRating: ko.observable(2),
 
         pickFirstSandwichChoice: function () {
             this.sandwichChoice(this.sandwiches()[0].Name);
+        },
+
+        addSandwich: function () {
+
+            var newSandwich = {
+                Name: this.newChoiceName(),
+                Ingredients: this.newChoiceIngredients(),
+                InventedBy: this.newChoiceInventedBy(),
+                Priority: this.newChoicePriority(),
+                FlavourRating: this.newChoiceFlavourRating(),
+                ID: 0
+            };
+
+            $.ajax({
+                url: "/api/Sandwich/",
+                type: "POST",
+                data: newSandwich,
+                datatype: "json",
+                processData: false,
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    alert(result);
+                }
+            });
         }
     }
 
